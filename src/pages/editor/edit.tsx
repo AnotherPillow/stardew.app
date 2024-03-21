@@ -430,9 +430,14 @@ export default function Editor() {
                                 Four Corners
                               </SelectItem>
                               <SelectItem value="Beach">Beach</SelectItem>
-                              <SelectItem value="Meadowlands">
-                                Meadowlands
-                              </SelectItem>
+                              {
+                                /* Meadowlands is only available in 1.6.0 */
+                                form.watch("gameVersion") === "1.6.0" && (
+                                  <SelectItem value="Meadowlands">
+                                    Meadowlands
+                                  </SelectItem>
+                                )
+                              }
                             </SelectContent>
                           </Select>
                           <FormMessage />

@@ -238,5 +238,59 @@
     "name": "Fector's Challenge",
     "description": "Beat 'Journey Of The Prairie King' without dying. (Secret Achievement)",
     "id": 39
+  },
+  "Well-Read": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/1/1b/Achievement_Well-Read.jpg/64px-Achievement_Well-Read.jpg",
+    "name": "Well-Read",
+    "description": "Read every book.",
+    "id": 40
+  },
+  "Two Thumbs Up": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/c/ca/Achievement_Two_Thumbs_Up.jpg/64px-Achievement_Two_Thumbs_Up.jpg",
+    "name": "Two Thumbs Up",
+    "description": "See a movie.",
+    "id": 41
+  },
+  "Blue Ribbon": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/7/7a/Achievement_Blue_Ribbon.jpg/64px-Achievement_Blue_Ribbon.jpg",
+    "name": "Blue Ribbon",
+    "description": "Get 1st place in the Stardew Valley Fair competition.",
+    "id": 42
+  },
+  "An Unforgettable Soup": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/c/c8/Achievement_An_Unforgettable_Soup.jpg/64px-Achievement_An_Unforgettable_Soup.jpg",
+    "name": "An Unforgettable Soup",
+    "description": "Delight the Governor.",
+    "id": 43
+  },
+  "Good Neighbors": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/0/00/Achievement_Good_Neighbors.jpg/64px-Achievement_Good_Neighbors.jpg",
+    "name": "Good Neighbors",
+    "description": "Help your forest neighbors grow their family.",
+    "id": 44
+  },
+  "Danger In The Deep": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/9/99/Achievement_Danger_In_The_Deep.jpg/64px-Achievement_Danger_In_The_Deep.jpg",
+    "name": "Danger In The Deep",
+    "description": "Reach the bottom of the 'dangerous' mines.",
+    "id": 45
+  },
+  "Infinite Power": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/0/0c/Achievement_Infinite_Power.jpg/64px-Achievement_Infinite_Power.jpg",
+    "name": "Infinite Power",
+    "description": "Obtain the most powerful weapon.",
+    "id": 46
+  },
+  "Perfection": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/8/8b/Achievement_Perfection.jpg/64px-Achievement_Perfection.jpg",
+    "name": "Perfection",
+    "description": "Reach the summit.",
+    "id": 47
+  },
+  "A Distant Shore": {
+    "iconURL": "https://stardewvalleywiki.com/mediawiki/images/thumb/5/5b/Achievement_A_Distant_Shore.jpg/64px-Achievement_A_Distant_Shore.jpg",
+    "name": "A Distant Shore",
+    "description": "Reach Ginger Island.",
+    "id": 48
   }
 }

@@ -80,6 +80,14 @@ export const MobileNav = ({
                       onClick={() => inputRef.current?.click()}
                     >
                       Upload
+                      <input
+                        type="file"
+                        ref={inputRef}
+                        className="hidden"
+                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                          handleChange(e)
+                        }
+                      />
                     </Button>
                   </>
                 )}

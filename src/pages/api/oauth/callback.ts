@@ -1,3 +1,4 @@
+import { Row } from "@tidbcloud/serverless";
 import { getCookie, setCookie } from "cookies-next";
 import crypto from "crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -7,7 +8,7 @@ type Data = Record<string, any>;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data>,
 ) {
   try {
     // get state from cookie to verify that this is the correct authentication request
@@ -34,7 +35,7 @@ export default async function handler(
 
     const discord = await fetch(
       `https://discord.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(
-        process.env.DISCORD_REDIRECT ?? ""
+        process.env.DISCORD_REDIRECT ?? "",
       )}`,
       {
         method: "POST",
@@ -48,7 +49,7 @@ export default async function handler(
           code: code ?? "",
           redirect_uri: process.env.DISCORD_REDIRECT ?? "",
         }),
-      }
+      },
     );
 
     if (!discord.ok) {
@@ -75,17 +76,23 @@ export default async function handler(
 
     const discordUserData = await discordUser.json();
 
-    let user = (
-      await conn.execute("SELECT * FROM Users WHERE id = ? LIMIT 1", [uid])
-    )?.rows[0] as SqlUser | undefined;
+    const result = (await conn.execute(
+      "SELECT * FROM Users WHERE id = ? LIMIT 1",
+      [uid],
+    )) as Row[];
+
+    let user = result[0] as SqlUser | undefined;
+
     let cookieSecret =
       user?.cookie_secret ?? crypto.randomBytes(16).toString("hex");
+
     if (!user) {
-      let discordUser = (
-        await conn.execute("SELECT * FROM Users WHERE discord_id = ? LIMIT 1", [
-          discordUserData.id,
-        ])
-      )?.rows[0] as SqlUser | undefined;
+      let discordUserResult = (await conn.execute(
+        "SELECT * FROM Users WHERE discord_id = ? LIMIT 1",
+        [uid],
+      )) as Row[];
+
+      let discordUser = discordUserResult[0] as SqlUser | undefined;
 
       if (discordUser) {
         user = discordUser;
@@ -95,7 +102,7 @@ export default async function handler(
         if (discordUser.discord_name !== discordUserData.username) {
           const r = await conn.execute(
             "UPDATE Users SET discord_name = ? WHERE discord_id = ?",
-            [discordUserData.username, discordUserData.id]
+            [discordUserData.username, discordUserData.id],
           );
         }
 
@@ -103,7 +110,7 @@ export default async function handler(
         if (discordUser.discord_avatar !== discordUserData.avatar) {
           const r = await conn.execute(
             "UPDATE Users SET discord_avatar = ? WHERE discord_id = ?",
-            [discordUserData.avatar, discordUserData.id]
+            [discordUserData.avatar, discordUserData.id],
           );
         }
       } else {
@@ -115,7 +122,7 @@ export default async function handler(
             discordUserData.username,
             discordUserData.avatar,
             cookieSecret,
-          ]
+          ],
         );
         user = {
           id: uid as string,
@@ -160,7 +167,7 @@ export default async function handler(
           ? "localhost"
           : "stardew.app",
         expires: new Date(token.expires * 1000),
-      }
+      },
     );
 
     res.redirect("/");
@@ -177,7 +184,7 @@ export default async function handler(
           Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   } catch (e: any) {
     res.status(500).send(e.message);

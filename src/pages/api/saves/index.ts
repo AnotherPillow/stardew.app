@@ -1,13 +1,11 @@
-import { Client } from "@planetscale/database";
+import { Row, connect } from "@tidbcloud/serverless";
 import { getCookie, setCookie } from "cookies-next";
 import crypto from "crypto";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const client = new Client({
+export const conn = connect({
   url: process.env.DATABASE_URL,
 });
-
-export const conn = client.connection();
 
 type Data = Record<string, any>;
 
@@ -41,11 +39,14 @@ export async function getUID(
   res: NextApiResponse<Data>,
 ): Promise<string> {
   let uid = getCookie("uid", { req, res });
+  console.log(uid);
   if (uid) {
     // uids can be anonymous, so we need to check if the user exists
-    const user = (
-      await conn.execute("SELECT * FROM Users WHERE id = ? LIMIT 1", [uid])
-    )?.rows[0] as SqlUser | undefined;
+    const result = (await conn.execute(
+      "SELECT * FROM Users WHERE id = ? LIMIT 1",
+      [uid],
+    )) as Row[];
+    const user = result[0] as SqlUser | undefined;
 
     if (user) {
       // user exists, so we check if the user is authenticated
@@ -68,6 +69,7 @@ export async function getUID(
     // everything is ok, so we return the uid
     return uid as string;
   } else {
+    console.log("no UID so we gonna make one");
     // no uid, so we create an anonymous one
     uid = crypto.randomBytes(16).toString("hex");
     setCookie("uid", uid, {
@@ -115,9 +117,11 @@ export const verifyToken = (token: string, key: string) => {
 async function get(req: NextApiRequest, res: NextApiResponse) {
   const uid = await getUID(req, res);
 
-  const players = (
-    await conn.execute("SELECT * FROM Saves WHERE user_id = ?", [uid])
-  )?.rows as any[] | undefined;
+  const result = (await conn.execute(
+    "SELECT * Saves Users WHERE id = ? LIMIT 1",
+    [uid],
+  )) as Row[];
+  const players = result[0] as any[] | undefined;
 
   res.json(players);
 }

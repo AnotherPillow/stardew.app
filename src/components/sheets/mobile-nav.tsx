@@ -4,7 +4,6 @@ import useSWR from "swr";
 import type { User } from "@/components/top-bar";
 
 import { cn } from "@/lib/utils";
-import { deleteCookie } from "cookies-next";
 import { usePathname } from "next/navigation";
 import {
   ChangeEvent,
@@ -30,6 +29,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { parseSaveFile } from "@/lib/file";
+import { deleteCookie } from "cookies-next";
 import { toast } from "sonner";
 import { ScrollArea } from "../ui/scroll-area";
 
@@ -39,6 +39,7 @@ interface Props {
   setDeletionOpen: Dispatch<SetStateAction<boolean>>;
   setCreditsOpen: Dispatch<SetStateAction<boolean>>;
   setFeedbackOpen: Dispatch<SetStateAction<boolean>>;
+  setBugreportOpen: Dispatch<SetStateAction<boolean>>;
   inputRef: MutableRefObject<HTMLInputElement | null>;
 }
 
@@ -49,6 +50,7 @@ export const MobileNav = ({
   setDeletionOpen,
   setCreditsOpen,
   setFeedbackOpen,
+  setBugreportOpen,
 }: Props) => {
   const api = useSWR<User>(
     "/api",
@@ -171,6 +173,30 @@ export const MobileNav = ({
                         Delete saves
                       </Button>
                     </div>
+
+                    <div className="grid grid-cols-3 gap-2">
+                      <Button
+                        onClick={() => setFeedbackOpen(true)}
+                        className="w-full"
+                        variant="outline"
+                      >
+                        Feedback
+                      </Button>
+                      <Button
+                        onClick={() => setBugreportOpen(true)}
+                        className="w-full"
+                        variant="outline"
+                      >
+                        Bug Report
+                      </Button>
+                      <Button
+                        onClick={() => setCreditsOpen(true)}
+                        className="w-full"
+                        variant="outline"
+                      >
+                        Credits
+                      </Button>
+                    </div>
                     <Button
                       onClick={() => {
                         deleteCookie("token", {
@@ -202,22 +228,6 @@ export const MobileNav = ({
                     >
                       Log out
                     </Button>
-                    <div className="grid grid-cols-2 gap-2">
-                      <Button
-                        onClick={() => setFeedbackOpen(true)}
-                        className="w-full"
-                        variant="outline"
-                      >
-                        Feedback
-                      </Button>
-                      <Button
-                        onClick={() => setCreditsOpen(true)}
-                        className="w-full"
-                        variant="outline"
-                      >
-                        Credits
-                      </Button>
-                    </div>
                   </>
                 )}
               </div>

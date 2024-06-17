@@ -27,21 +27,22 @@ import {
 import { SidebarLayout } from "@/components/catalyst/sidebar-layout";
 import {
   ArrowRightStartOnRectangleIcon,
+  ArrowUpTrayIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  Cog6ToothIcon,
   Cog8ToothIcon,
+  HeartIcon,
   HomeIcon,
+  IdentificationIcon,
   InboxIcon,
   LightBulbIcon,
   MagnifyingGlassIcon,
-  MegaphoneIcon,
+  PencilIcon,
   PlusIcon,
   QuestionMarkCircleIcon,
   ShieldCheckIcon,
   SparklesIcon,
-  Square2StackIcon,
-  TicketIcon,
+  TrophyIcon,
   UserIcon,
 } from "@heroicons/react/16/solid";
 import type { Metadata } from "next";
@@ -112,7 +113,7 @@ export default function RootLayout({
                 <Dropdown>
                   <DropdownButton as={SidebarItem} className="lg:mb-2.5">
                     <Avatar src="/tailwind-logo.svg" />
-                    <SidebarLabel>Tailwind Labs</SidebarLabel>
+                    <SidebarLabel>Player Name</SidebarLabel>
                     <ChevronDownIcon />
                   </DropdownButton>
                   <DropdownMenu
@@ -124,33 +125,20 @@ export default function RootLayout({
                       <DropdownLabel>Settings</DropdownLabel>
                     </DropdownItem>
                     <DropdownDivider />
-                    <DropdownItem href="/teams/1">
-                      <Avatar slot="icon" src="/tailwind-logo.svg" />
-                      <DropdownLabel>Tailwind Labs</DropdownLabel>
-                    </DropdownItem>
-                    <DropdownItem href="/teams/2">
-                      <Avatar
-                        slot="icon"
-                        initials="WC"
-                        className="bg-purple-500 text-white"
-                      />
-                      <DropdownLabel>Workcation</DropdownLabel>
-                    </DropdownItem>
-                    <DropdownDivider />
                     <DropdownItem href="/teams/create">
                       <PlusIcon />
-                      <DropdownLabel>New team&hellip;</DropdownLabel>
+                      <DropdownLabel>New farmhand&hellip;</DropdownLabel>
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
                 <SidebarSection className="max-lg:hidden">
                   <SidebarItem href="/search">
-                    <MagnifyingGlassIcon />
-                    <SidebarLabel>Search</SidebarLabel>
+                    <PencilIcon />
+                    <SidebarLabel>Edit a save</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem href="/inbox">
-                    <InboxIcon />
-                    <SidebarLabel>Inbox</SidebarLabel>
+                    <ArrowUpTrayIcon />
+                    <SidebarLabel>Upload a save</SidebarLabel>
                   </SidebarItem>
                 </SidebarSection>
               </SidebarHeader>
@@ -161,34 +149,37 @@ export default function RootLayout({
                     <SidebarLabel>Home</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem href="/events">
-                    <Square2StackIcon />
-                    <SidebarLabel>Events</SidebarLabel>
+                    <IdentificationIcon />
+                    <SidebarLabel>Farmer</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem href="/orders">
-                    <TicketIcon />
-                    <SidebarLabel>Orders</SidebarLabel>
+                    <SparklesIcon />
+                    <SidebarLabel>Skills & Mastery</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem href="/settings">
-                    <Cog6ToothIcon />
-                    <SidebarLabel>Settings</SidebarLabel>
+                    <TrophyIcon />
+                    <SidebarLabel>Perfection</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem href="/broadcasts">
-                    <MegaphoneIcon />
-                    <SidebarLabel>Broadcasts</SidebarLabel>
+                    <HeartIcon />
+                    <SidebarLabel>Relationships</SidebarLabel>
                   </SidebarItem>
                 </SidebarSection>
                 <SidebarSection className="max-lg:hidden">
-                  <SidebarHeading>Upcoming Events</SidebarHeading>
-                  <SidebarItem href="/events/1">
-                    Bear Hug: Live in Concert
-                  </SidebarItem>
-                  <SidebarItem href="/events/2">Viking People</SidebarItem>
-                  <SidebarItem href="/events/3">
-                    Six Fingers — DJ Set
-                  </SidebarItem>
-                  <SidebarItem href="/events/4">
-                    We All Look The Same
-                  </SidebarItem>
+                  <SidebarHeading>Collections</SidebarHeading>
+                  <SidebarItem href="/events/1">Cooking</SidebarItem>
+                  <SidebarItem href="/events/2">Crafting</SidebarItem>
+                  <SidebarItem href="/events/3">Fishing</SidebarItem>
+                  <SidebarItem href="/events/4">Shipping</SidebarItem>
+                  <SidebarItem href="/events/4">Museum & Artifacts</SidebarItem>
+                </SidebarSection>
+                <SidebarSection className="max-lg:hidden">
+                  <SidebarHeading>Misc</SidebarHeading>
+                  <SidebarItem href="/events/1">Bundles</SidebarItem>
+                  <SidebarItem href="/events/2">Walnuts</SidebarItem>
+                  <SidebarItem href="/events/3">Secret Notes</SidebarItem>
+                  <SidebarItem href="/events/4">Journal Scraps</SidebarItem>
+                  <SidebarItem href="/events/4">Et cetera</SidebarItem>
                 </SidebarSection>
                 <SidebarSpacer />
                 <SidebarSection>
@@ -214,10 +205,7 @@ export default function RootLayout({
                       />
                       <span className="min-w-0">
                         <span className="block truncate text-sm/5 font-medium text-zinc-950 dark:text-white">
-                          Erica
-                        </span>
-                        <span className="block truncate text-xs/5 font-normal text-zinc-500 dark:text-zinc-400">
-                          erica@example.com
+                          lafond
                         </span>
                       </span>
                     </span>

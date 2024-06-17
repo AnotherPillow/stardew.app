@@ -148,19 +148,19 @@ export default function RootLayout({
                     <HomeIcon />
                     <SidebarLabel>Home</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="/events">
+                  <SidebarItem href="/farmer">
                     <IdentificationIcon />
                     <SidebarLabel>Farmer</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="/orders">
+                  <SidebarItem href="/skills">
                     <SparklesIcon />
                     <SidebarLabel>Skills & Mastery</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="/settings">
+                  <SidebarItem href="/perfection">
                     <TrophyIcon />
                     <SidebarLabel>Perfection</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="/broadcasts">
+                  <SidebarItem href="/relationships">
                     <HeartIcon />
                     <SidebarLabel>Relationships</SidebarLabel>
                   </SidebarItem>
